@@ -14,15 +14,15 @@ import java.util.HashSet;
  *
  */
 public class RobotGrid {
-	final static int grid_rows = 8;
-	final static int grid_cols = 8;
+	final static int grid_rows = 100;
+	final static int grid_cols = 100;
 	static ArrayList<Point> moves = new ArrayList<Point>();
 	public enum Move {RIGHT, DOWN, STOP, STUCK};
 	
 	public static void main(String[] args)
 	{
 		Point origin = new Point(0, 0);
-		Point destination = new Point(7,7);
+		Point destination = new Point(grid_rows - 1,grid_rows - 1);
 		
 		HashSet<Point> offgrid = new HashSet<Point>();
 		offgrid.add(new Point(1,0));
