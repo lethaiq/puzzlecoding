@@ -5,10 +5,10 @@ import java.util.HashSet;
 /**
  * Problem Statement: (Problem 8.2 Cracking the coding interview, 6th ed)
  * Imagine a robot sitting on the upper left corner of grid 
- * with r rows and c olumns. The robot can only move intwo 
+ * with r rows and columns. The robot can only move in two 
  * directions, right and down, but certain cells are off 
  * limits such that the robot cannot step on them. Design an
- *  algorithm to find a bath for the robot from the top left to bottom right.
+ * algorithm to find a bath for the robot from the top left to bottom right.
  *  
  * @author lethai
  *
