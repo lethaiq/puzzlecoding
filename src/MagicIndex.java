@@ -26,23 +26,28 @@ public class MagicIndex {
 		if (to < from | from < 0 | from > arr.length - 1 | to < 0 | to > arr.length - 1) return;
 		int mid = from + (to - from) / 2;
 //		System.out.println("checking index " + mid + " from " + from + " to " + to);
-		if (arr[mid] == mid)
-		{
-			magic.add(mid);
-			getMagicIndex(arr, mid + 1, to);
-			getMagicIndex(arr, from, mid - 1);
-		}
-		else if (arr[mid] > mid)
-		{
-			int diff = arr[mid] - mid;
-			if ((to - mid) >= diff) getMagicIndex(arr, mid + diff, to);
-			getMagicIndex(arr, from, mid - 1);
-		}
-		else if (arr[mid] < mid) 
-		{
-			int diff = mid - arr[mid];
-			if ((mid - from) >= diff) getMagicIndex(arr, from, mid - diff);
-			getMagicIndex(arr, mid + 1, to);
-		}
+//		if (arr[mid] == mid)
+//		{
+//			magic.add(mid);
+//			getMagicIndex(arr, mid + 1, to);
+//			getMagicIndex(arr, from, mid - 1);
+//		}
+//		else if (arr[mid] > mid)
+//		{
+//			int diff = arr[mid] - mid;
+//			if ((to - mid) >= diff) getMagicIndex(arr, arr[mid], to);
+//			getMagicIndex(arr, from, mid - 1);
+//		}
+//		else if (arr[mid] < mid) 
+//		{
+//			int diff = mid - arr[mid];
+//			if ((mid - from) >= diff) getMagicIndex(arr, from, arr[mid]);
+//			getMagicIndex(arr, mid + 1, to);
+//		}
+		
+		if (arr[mid] == mid) magic.add(mid);
+		getMagicIndex(arr, Math.max(mid + 1, arr[mid]), to);
+		getMagicIndex(arr, from, Math.min(mid - 1, arr[mid]));
+		
 	}
 }
