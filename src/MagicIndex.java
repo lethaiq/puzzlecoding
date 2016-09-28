@@ -12,7 +12,7 @@ public class MagicIndex {
 	
 	public static void main(String[] args)
 	{
-		int[] arr = {1, 2, 4, 5, 19, 20, 0, 10, 9};
+		int[] arr = {1, 2, 4, 4, 5, 5, 0, 10, 11, 11, 8, 8};
 		Arrays.sort(arr);
 		System.out.println(Arrays.toString(arr));
 		getMagicIndex(arr, 0, arr.length - 1);
@@ -22,9 +22,7 @@ public class MagicIndex {
 	
 	private static void getMagicIndex(int[] arr, int from, int to)
 	{	
-		if (to < from | from < 0 | from > arr.length - 1 | to < 0 | to > arr.length - 1){
-			return;
-		}
+		if (to < from | from < 0 | from > arr.length - 1 | to < 0 | to > arr.length - 1) return;
 		int mid = from + (to - from) / 2;
 //		System.out.println("checking index " + mid + " from " + from + " to " + to);
 		if (arr[mid] == mid)
@@ -33,7 +31,17 @@ public class MagicIndex {
 			getMagicIndex(arr, mid + 1, to);
 			getMagicIndex(arr, from, mid - 1);
 		}
-		else if (arr[mid] > mid) getMagicIndex(arr, from, mid - 1);
-		else if (arr[mid] < mid) getMagicIndex(arr, mid + 1, to);
+		else if (arr[mid] > mid)
+		{
+			int diff = arr[mid] - mid;
+			if ((to - mid) >= diff) getMagicIndex(arr, mid + diff, mid + diff);
+			getMagicIndex(arr, from, mid - 1);
+		}
+		else if (arr[mid] < mid) 
+		{
+			int diff = mid - arr[mid];
+			if ((mid - from) >= diff) getMagicIndex(arr, mid - diff, mid - diff);
+			getMagicIndex(arr, mid + 1, to);
+		}
 	}
 }
