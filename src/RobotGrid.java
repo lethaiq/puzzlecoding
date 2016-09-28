@@ -2,6 +2,17 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/**
+ * Problem Statement: (Problem 8.2 Cracking the coding interview, 6th ed)
+ * Imagine a robot sitting on the upper left corner of grid 
+ * with r rows and c olumns. The robot can only move intwo 
+ * directions, right and down, but certain cells are off 
+ * limits such that the robot cannot step on them. Design an
+ *  algorithm to find a bath for the robot from the top left to bottom right.
+ *  
+ * @author lethai
+ *
+ */
 public class RobotGrid {
 	final static int grid_rows = 8;
 	final static int grid_cols = 8;
@@ -28,8 +39,9 @@ public class RobotGrid {
 		offgrid.add(new Point(7,5));
 		offgrid.add(new Point(5,7));
 		offgrid.add(new Point(0,4));
+		offgrid.add(new Point(3,3));
 		moveNext(origin, destination, offgrid);
-		
+		if(moves.size() == 0) System.out.println("Maze is blocked");
 		for(Point p:moves) System.out.println(p);
 	}
 	
