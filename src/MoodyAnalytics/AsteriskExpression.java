@@ -1,5 +1,4 @@
 package MoodyAnalytics;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,8 +23,6 @@ public class AsteriskExpression {
 		{
 			String expression = in.readLine();
 			BigInteger val = eval(expression, mod);
-			DecimalFormat df = new DecimalFormat("#.#");
-//			System.out.println(val.toString());
 			if(val.compareTo(BigInteger.valueOf(-1)) != 0) System.out.println(val.toString());
 			else System.out.println("Syntax Error");
 		}
@@ -42,14 +39,10 @@ public class AsteriskExpression {
 		while (i < e.length())
 		{
 			String Char = String.valueOf(e.charAt(i));
-//			System.out.println("Current=" + Char);
 			if (Char.equals(MULTI))
 			{
-//				if char is an Asterisk
 				if (!preNum.equals(""))
 				{
-//					System.out.println("PreNum=" + preNum);
-//					System.out.println("PreOpt=" + preOpt);
 					if (preOpt.equals(MULTI))
 					{
 						num.add(BigInteger.valueOf(Long.parseLong(preNum)).mod(MOD));
@@ -57,40 +50,24 @@ public class AsteriskExpression {
 					}
 					else if (preOpt.equals(POWER))
 					{
-//						num.add(Math.pow(num.pop(), Double.parseDouble(preNum)));
-//						num.add(calcPower(num.pop(), Double.parseDouble(preNum)));
 						num.add(num.pop().modPow(BigInteger.valueOf(Long.parseLong(preNum)), MOD));
 						preOpt = "";
 					}
-					else if (preOpt.equals("")) 
-					{
-						num.add(BigInteger.valueOf(Long.parseLong(preNum)).mod(MOD));
-					}
+					else if (preOpt.equals("")) num.add(BigInteger.valueOf(Long.parseLong(preNum)).mod(MOD));
 					preNum = "";
 				} else if (preOpt.equals(POWER)) return BigInteger.valueOf(-1);
-//				System.out.println("Add " + MULTI + " to preOpt");
 				preOpt = preOpt + MULTI;
 			}
 			else
 			{
-//				if char is an number
 				if(preNum.equals("") && Char.equals("0")) return BigInteger.valueOf(-1);
-//				if(!preNum.equals("") && Integer.parseInt(String.valueOf(preNum.charAt(preNum.length()-1))) > Integer.parseInt(Char)) return BigInteger.valueOf(-1);
 				preNum = preNum + Char;
-				if (i == e.length() - 1)
-				{
-//					if the number located at last
-					e = e + MULTI;
-				}
+				if (i == e.length() - 1) e = e + MULTI;
 			}
 			i = i + 1;
 		}
 		BigInteger result = BigInteger.ONE;
-		while(!num.isEmpty())
-		{
-//			System.out.println(num.peek());
-			result = result.multiply(num.pop());
-		}
+		while(!num.isEmpty())	result = result.multiply(num.pop());
 		return result.mod(MOD);
 	}
 }
