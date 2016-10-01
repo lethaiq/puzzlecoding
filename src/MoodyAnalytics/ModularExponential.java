@@ -24,7 +24,8 @@ public class ModularExponential {
 		if (n == 1) return x;
 		if (n == 0) return 1;
 		if (n % 2 == 0) return calcPower(((x % MOD) * (x % MOD)) % MOD , n/2) % MOD;
-		if (n % 2 != 0) return ((calcPower(((x % MOD) * (x % MOD)) % MOD, (n-1)/2) % MOD) * (x % MOD)) % MOD;
+		if (n % 2 != 0) return ((calcPower(((x %
+				MOD) * (x % MOD)) % MOD, (n-1)/2) % MOD) * (x % MOD)) % MOD;
 		return 0;
 	}
 	
